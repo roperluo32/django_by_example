@@ -3,8 +3,8 @@
 {% block title %}{{post.title}} {% endblock %}
 
 {% block content %}
-<h2>{{post.title}}</h2>
-<p>Published {{post.publish}} by {{post.auth}}</p>
+<h2 class='post_title'>{{post.title}}</h2>
+<p class='post_info'>Published {{post.publish}} by {{post.auth}}</p>
 
 <p>{{post.body | linebreaks}}</p>
 {% endblock %}

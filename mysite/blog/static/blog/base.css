@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+}
+
+.content {
+    flex: 1;
+}
+
+.slider {
+    width: 20%;
+    background-color: #ccc;
+    padding: 0px 20px;
+}
+
+.post_title {
+    color: #f40;
+    text-decoration: none;
+}
+
+.post_info {
+    color: #666;
+    font-size: 80%;
+}
