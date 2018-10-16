@@ -123,3 +123,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.qq.com' #smtp.qq.com'
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER = '442078092@qq.com' #'roperluo@sina.cn' #'442078092@qq.com'
+# EMAIL_HOST_PASSWORD = 'vleuzehdqazhbgge' #'sina3314885'
+# EMAIL_USE_TLS = True
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_SSL = True 
+# EMAIL_PORT = 465
+# EMAIL_USE_TLS = True   #是否使用TLS安全传输协议
+# EMAIL_PORT = 25
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_HOST_USER = '442078092@qq.com'
+EMAIL_HOST_PASSWORD = 'vleuzehdqazhbgge'
