@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.urls import reverse
 
 
 # Create your models here.
@@ -28,8 +29,11 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    # def absolute_url(self):
-    #     return reverse('blog:post')
+    def absolute_url(self):
+        return reverse('blog:post_detail', args=(self.publish.year,
+                                            self.publish.strftime("%m"),
+                                            self.publish.strftime("%d"),
+                                            self.slug)) 
 
     objects = models.Manager()
     published = PublishedManager()
