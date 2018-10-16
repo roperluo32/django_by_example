@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post
 from django.views import generic
 from .forms import EmailPostForm, CommentForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+# from taggit.models import Tag
 # Create your views here.
 
 # class PostListView(generic.ListView):
@@ -23,10 +25,19 @@ def post_share(request, post_id):
 
     return render(request, 'blog/share.html', {'post': post, 'form': form, 'sent': sent})
 
-def post_list(request):
-    posts = Post.published.all()
+def post_list(request, tag_slug=None):
+    object_list = Post.published.all()
+    paginator = Paginator(object_list, 3)
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
 
-    return render(request, 'blog/list.html', {'posts': posts})
+    return render(request, 'blog/list.html', {'posts': posts,
+                                                'page': page})
 
 
 def post_detail(request, year, month, day, post):

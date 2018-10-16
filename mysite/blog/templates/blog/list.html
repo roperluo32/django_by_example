@@ -4,12 +4,21 @@
 
 {% block content %}
 
+<!-- {% if tag %}
+    <h1>Posts selected by tag {{tag}}</h1>
+{% endif %} -->
+
 {% for post in posts %}
 
     <!-- <h2><a href="{% url 'blog:post_detail' year=post.publish.year month=post.publish.month day=post.publish.day post=post.slug %}">{{post.title}}</a></h2> -->
     <h2><a class='post_title' href='{{ post.absolute_url }}'>{{post.title}}</a></h2>
+    <!-- <p class="tag">Tag:{{post.tags | join:','}}</p> -->
     <p class='post_info'>Published at {{post.publish}} by {{post.author}}</p>
     <p>{{post.body | truncatewords:30 | linebreaks }}</p>
 {% endfor %}
+
+{% with page=posts %}
+    {% include "blog/pagination.html" %}
+{% endwith %}
 
 {% endblock %}

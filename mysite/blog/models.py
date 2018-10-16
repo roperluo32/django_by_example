@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
 
-
 # Create your models here.
 
 class PublishedManager(models.Manager):
