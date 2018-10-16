@@ -9,7 +9,7 @@ Share Post
     <p>You have share post successfully</p>
 {% else %}
     <h1>Share "{{post.title}}" by Email</h1>
-    <form action="." method="POST">
+    <form action="{% url 'blog:post_share' post.id %}" method="POST">
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit", value="submit">

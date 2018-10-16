@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post
 from django.views import generic
-from .forms import EmailPostForm
+from .forms import EmailPostForm, CommentForm
 # Create your views here.
 
 # class PostListView(generic.ListView):
@@ -10,6 +10,7 @@ from .forms import EmailPostForm
 
 def post_share(request, post_id):
     post = get_object_or_404(Post, pk=post_id)    
+    sent = False
     if request.method == 'POST':
         form = EmailPostForm(request.POST)
         if form.is_valid():
@@ -34,5 +35,20 @@ def post_detail(request, year, month, day, post):
                                    publish__year=year,
                                    publish__month=month,
                                    publish__day=day)
+    comments = post.comments.filter(active=True)
+    new_comment = None
 
-    return render(request, 'blog/detail.html', {'post': post})
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
+    return render(request, 'blog/detail.html', {'post': post,
+                                                 'comments': comments,
+                                                 'new_comment': new_comment,
+                                                 'comment_form': comment_form,
+                                                 })

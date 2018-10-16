@@ -37,3 +37,13 @@ class Post(models.Model):
 
     objects = models.Manager()
     published = PublishedManager()
+
+
+class Comment(models.Model):
+    post = models.ForeignKey("Post", related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=254)
+    body = models.TextField()
+    create = models.DateTimeField(auto_now_add=True)
+    update = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
