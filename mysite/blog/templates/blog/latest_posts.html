@@ -1,0 +1,10 @@
+<ul>
+    <p>count: {{my_posts.count}}</p>
+    <p>num:{{num}}</p>
+    {% for post in my_posts %}
+        <li>
+            {{ forloop.count }}
+            <a href="{{ post.absolute_url }}">{{ post.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
