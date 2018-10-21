@@ -1,0 +1,12 @@
+#header {
+    background-color: #af8;
+    height: 60px;
+}
+
+.logo {
+    color: #aaa;
+    font-size: 18px;
+    line-height:60px;
+    vertical-align: center;
+    display: inline-block;
+}
