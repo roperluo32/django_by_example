@@ -1,0 +1,20 @@
+{% extends "./base.html" %}
+
+{% block title %}
+    Log In
+{% endblock title %}
+
+{% block content %}
+
+{% if form.errors %}
+    <h3>Your username or password is wrong,please input again.</h3>
+{% else %}
+    <h3>Welcome to Log In</h3>
+{% endif %}
+<form action="{% url 'account:login' %}" method='POST'>
+    {% csrf_token %}
+    {{login_form.as_p}}
+    <input type="hidden" name="next" value={{next}}>
+    <input type="submit" value="login">
+</form>
+{% endblock content %}
