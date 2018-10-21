@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load blog_tags %}
 
 {% block title %}{{post.title}} {% endblock %}
 
@@ -6,7 +7,7 @@
 <h2 class='post_title'>{{post.title}}</h2>
 <p class='post_info'>Published {{post.publish}} by {{post.auth}}</p>
 
-<p>{{post.body | linebreaks}}</p>
+<p>{{post.body | markdown}}</p>
 <p><a href="{% url 'blog:post_share' post.id %}">Share By Email</a></p>
 
 <h3>Comments</h3>
